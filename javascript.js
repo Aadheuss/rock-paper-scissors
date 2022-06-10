@@ -8,10 +8,8 @@ function computerPlay() {
 
 let computerSelection = computerPlay();
 //return random selection between rock, paper, or scissors.
-function playerSelection(string) {
-  let rock = 'rock';
-  let paper = 'paper';
-  let scissors = 'scissors';
+function playerChoice(string) {
+  string = string.toLowerCase();
 //let the player choose between three selection
   if (string == 'rock') {
     return rock;
@@ -23,10 +21,10 @@ function playerSelection(string) {
     return 'No selection is chosen';
   }
 }
-console.log(playerSelection);
 //make player selection between Rock, Paper, or scissors
 function singleRound(playerSelection, computerSelection) {
 //rock beats paper
+  playerSelection = playerSelection.toLowerCase();
   computerSelection = computerPlay();
   if ((playerSelection == 'paper') && (computerSelection == 'scissors')) {
     return 'You Lose! Scissors beats Paper';
