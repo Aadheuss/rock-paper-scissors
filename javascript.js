@@ -9,20 +9,6 @@ function computerPlay() {
 //computer randomly return either 'Rock', 'Paper'. or 'Scissors'
 let computerSelection = computerPlay();
 //return random selection between rock, paper, or scissors.
-function playerChoice(string) {
-  string = string.toLowerCase();
-//let the player choose between three selection
-  if (string == 'rock') {
-    return rock;
-  }else if (string == 'paper') {
-    return paper;
-  }else if (string == 'scissors') {
-    return scissors;
-  }else {
-    return 'No selection is chosen';
-  }
-}
-
 function singleRound(playerSelection, computerSelection) {
   playerSelection = prompt ('Choose your hand!', '');
 //ask for player input
