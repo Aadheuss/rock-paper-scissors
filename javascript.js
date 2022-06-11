@@ -9,7 +9,7 @@ function computerPlay() {
 //computer randomly return either 'Rock', 'Paper'. or 'Scissors'
 let computerSelection = computerPlay();
 //return random selection between rock, paper, or scissors.
-function singleRound(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
   playerSelection = prompt ('Choose your hand!', '');
 //ask for player input
 //make player selection between Rock, Paper, or scissors
@@ -52,7 +52,7 @@ function singleRound(playerSelection, computerSelection) {
 //declare the winner of the round when it finished
 function game() {
   for (let i = 0; i < 5; i++) {
-    let result = singleRound();
+    let result = playRound();
     console.log(result);
     console.log(playerScore > computerScore);
 //call the playRound function
