@@ -1,0 +1,45 @@
+body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  background-color: #FDD935;
+  color: #000000;
+  font-family: "Zilla Slab", sans-serif;
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  margin-top: 0px;
+  margin-bottom: 60px;
+  font-size: 60px;}
+
+div.button {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+button { 
+  margin-top: 0px;
+  width: 120px;
+  padding: 18px;
+  font-size: 18px;
+}
+
+.result {
+  font-size: 39px;
+}
+
+.score {
+  display: flex;
+  gap: 18px;
+  font-size: 24px;
+}
+
+div.computer-button {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
