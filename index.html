@@ -8,27 +8,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,
-500;1,600;1,700&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet"> 
     <script src="javascript.js" async defer></script>
   </head>
   <body>
     <h1>Rock Paper Scissors</h1>
     <div class="button">
-      <button class ="rock">ROCK</button>
-      <button class="paper">PAPER</button>
-      <button class="Scissors">SCISSORS</button>
+      <button class ="selection" data-selection="rock">ROCK</button>
+      <button class="selection" data-selection="paper">PAPER</button>
+      <button class="selection" data-selection="scissors">SCISSORS</button>
     </div>
-    <div class="result">RESULT</div>
+    <div class="result">SCOREBOARD</div>
     <div class="score">
-      <div>Computer's Score</div>
-      <div>Player's Score</div>
+      <div class="player">
+        <div>Player's Score</div>
+        <div data="your-score">0</div>
+      </div>
+      <div class="computer">
+        <div>Computer's Score</div>
+        <div data-computer-score>0</div>
+      </div>
     </div>
     <div class="computer-button">
       <button>ROCK</button>
       <button>PAPER</button>
       <button>SCISSORS</button>
     </div>
+    <div class="final-column" data-final-column></div>
   </body>
 </html>
