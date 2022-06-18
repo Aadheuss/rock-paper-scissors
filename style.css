@@ -29,6 +29,7 @@ button {
   padding: 18px;
   font-size: 15px;
   font-weight: 600;
+  transition: all 0.6s ease-in;
 }
 
 .result {
@@ -68,4 +69,16 @@ div.computer-button {
   font-size:18px;
   font-weight: 600;
 
+}
+
+.chosen {
+  transform: scale(1.05);
+  border-color: #D81C23;
+  box-shadow: 0 0 1rem #D81C23;
+}
+
+.pick {
+  transform: scale(1.05);
+  border-color: #4fa8c2;
+  box-shadow: 0 0 1rem #4fa8c2;
 }
