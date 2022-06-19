@@ -26,10 +26,7 @@ function removeTransition(e) {
 const buttons = Array.from(document.querySelectorAll('button'));
   buttons.forEach(button => button.addEventListener('transitionend', removeTransition));
 //remove the border change
-function incrementScore(score) {
-  score.innerText = parseInt(score.innerText) + 1; 
-}
-//keep track of the score
+
 function randomSelection() {
   const randomIndex = Math.floor(Math.random() * SELECTIONS.length);
   return SELECTIONS[randomIndex];
@@ -48,37 +45,60 @@ selectionButtons.forEach(selectionButton => {
     makeSelection(selection)
   })
 })
-//return the value of player selection 
+//return the value of player selection
+function showRound(pScore, cScore) {
+  pScore = parseInt(pScore.innerText);
+  cScore = parseInt(cScore.innerText);
+  console.log(typeof(pScore));
+  const round = document.querySelector('.round');
+  const showWin = document.querySelector('.round div');
+  if (pScore === 5 || cScore === 5) {
+    showWin.classList.add('show-win');
+    if (pScore > cScore) {
+    showWin.innerText = 'You Win! It\'s your lucky day!';
+    showWin.style.cssText = "border-color: #01016f; color: #01016f;";
+
+    } else {
+    showWin.innerText = 'Computer win! better luck next time!';
+    showWin.style.cssText = "border-color: #d8031c; color: #d8031c;";
+  }
+  return round.appendChild(showWin);
+  }
+}
 
 function makeSelection(selection) {
   const computerSelection = randomSelection();
   changeColor(computerSelection);
   const yourWinner = isWinner(selection, computerSelection);
   const computerWinner = isWinner(computerSelection, selection);
-  addSelectionResult(computerSelection, computerWinner);
-  addSelectionResult(selection, yourWinner);
-
+  addSelectionResult(computerWinner);
+  addSelectionResult(yourWinner);
   if (yourWinner) incrementScore(playerScore);
+//add player's score
   if (computerWinner) incrementScore(computerScore);
+  showRound(playerScore, computerScore);
+//add computer's score
 }
 
+function incrementScore(score) {
+  score.innerText = parseInt(score.innerText) + 1; 
+}
+//add score by one for each win
+function addSelectionResult(winner) {
+  const div = document.createElement('div');
+  if (winner) div.classList.add('winner');
+}
+//Track the result for the round
+
 function changeColor(changeMe) {
-//make a function that will change the button color if it's selected
-//if the button is chosen change the color of the button
   changeMe = `.${changeMe.name}` ;
   const cButton = document.querySelector(changeMe);
   cButton.classList.add('chosen');
   }
-//change the border color by adding class
-function addSelectionResult(selection, winner) {
-  const div = document.createElement('div');
-  div.innerText = selection.name;
-  div.classList.add('result-selection');
-  if (winner) div.classList.add('winner');
-  finalColumn.after(div);
-}
-//Track the result for the round
+//if the button is chosen change the color of the button by adding class
 
 function isWinner(selection, opponentSelection) {
   return selection.beats === opponentSelection.name; 
 }
+
+//for loop will track score and stop the game after either player reached five and ask to play another round
