@@ -5,6 +5,7 @@ const playerScore = document.querySelector(`[data-player-score]`);
 const pButtons = document.querySelectorAll(`button.selection`);
 const round = document.querySelector('.round');
 const popUp = document.querySelector('.pop-up');
+const showWin = document.querySelector('.round div');
 const SELECTIONS = [
   {
     name: 'rock',
@@ -49,9 +50,8 @@ selectionButtons.forEach(selectionButton => {
 })
 //return the value of player selection
 function showRound(pScore, cScore) {
-  pScore = parseInt(pScore.innerText);
-  cScore = parseInt(cScore.innerText);
-  const showWin = document.createElement('div');
+  pScore = parseInt(playerScore.innerText);
+  cScore = parseInt(computerScore.innerText);
   if (pScore === 5 || cScore === 5) {
     showWin.classList.add('show-win');
     if (pScore > cScore) {
@@ -86,19 +86,27 @@ function resetScore(click, elOne, elTwo) {
   computerScore.innerText = 0;
   click.remove();
   elOne.remove();
-  elTwo.remove();
+  elTwo.innerText = '';
+  elTwo.classList.remove('show-win');
+  round.appendChild(elTwo);
+  
   }) 
 }
 //Reset score
 function makeSelection(selection) {
   const computerSelection = randomSelection();
   changeColor(computerSelection);
+  const plyScore = parseInt(playerScore.innerText);
+  const comScore = parseInt(computerScore.innerText);
   const yourWinner = isWinner(selection, computerSelection);
   const computerWinner = isWinner(computerSelection, selection);
   addSelectionResult(computerWinner);
   addSelectionResult(yourWinner); 
+  //increment score if both players score is less than five
+  if (plyScore < 5 && comScore < 5) {
   if (yourWinner) incrementScore(playerScore);
   if (computerWinner) incrementScore(computerScore);
+  }
 //add player's score
   showRound(playerScore, computerScore);
 //add computer's score
