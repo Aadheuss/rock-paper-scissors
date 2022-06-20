@@ -51,7 +51,7 @@ selectionButtons.forEach(selectionButton => {
 function showRound(pScore, cScore) {
   pScore = parseInt(pScore.innerText);
   cScore = parseInt(cScore.innerText);
-  const showWin = document.querySelector('.round div');
+  const showWin = document.createElement('div');
   if (pScore === 5 || cScore === 5) {
     showWin.classList.add('show-win');
     if (pScore > cScore) {
