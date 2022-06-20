@@ -23,7 +23,9 @@ const SELECTIONS = [
 
 function removeTransition(e) {
   if (e.propertyName !== 'transform') return;
-  e.target.classList.remove('chosen', 'pick', 'click-me');
+  e.target.classList.remove('chosen');
+  e.target.classList.remove('pick');
+  e.target.classList.remove('click-me');
 }
 
 const buttons = Array.from(document.querySelectorAll('button'));
