@@ -3,6 +3,8 @@ const finalColumn = document.querySelector(`[data-final-column]`);
 const computerScore = document.querySelector(`[data-computer-score]`)
 const playerScore = document.querySelector(`[data-player-score]`);
 const pButtons = document.querySelectorAll(`button.selection`);
+const round = document.querySelector('.round');
+const popUp = document.querySelector('.pop-up');
 const SELECTIONS = [
   {
     name: 'rock',
@@ -20,7 +22,7 @@ const SELECTIONS = [
 
 function removeTransition(e) {
   if (e.propertyName !== 'transform') return;
-  e.target.classList.remove('chosen', 'pick');
+  e.target.classList.remove('chosen', 'pick', 'click-me');
 }
 
 const buttons = Array.from(document.querySelectorAll('button'));
@@ -49,8 +51,6 @@ selectionButtons.forEach(selectionButton => {
 function showRound(pScore, cScore) {
   pScore = parseInt(pScore.innerText);
   cScore = parseInt(cScore.innerText);
-  console.log(typeof(pScore));
-  const round = document.querySelector('.round');
   const showWin = document.querySelector('.round div');
   if (pScore === 5 || cScore === 5) {
     showWin.classList.add('show-win');
@@ -62,20 +62,44 @@ function showRound(pScore, cScore) {
     showWin.innerText = 'Computer win! better luck next time!';
     showWin.style.cssText = "border-color: #d8031c; color: #d8031c;";
   }
-  return round.appendChild(showWin);
+  round.appendChild(showWin);
+  resetButton(showWin);
   }
 }
 
+function resetButton(toReset) {
+  popUp.innerText = 'Do you want to play again?'
+  round.appendChild(popUp);
+  const rButton = document.createElement('button');
+  rButton.classList.add('r-button');
+  rButton.innerText = 'Play again';
+  popUp.appendChild(rButton);
+  const clickMe = document.querySelector('.r-button');
+  clickMe.addEventListener('click', () => clickMe.classList.add('click-me'));
+  clickMe.addEventListener('transitionend', removeTransition);
+  resetScore(clickMe,popUp,toReset);
+}  
+//create a reset button and reset score if the player click the button 
+function resetScore(click, elOne, elTwo) {
+  click.addEventListener('click', () => {
+  playerScore.innerText = 0
+  computerScore.innerText = 0;
+  click.remove();
+  elOne.remove();
+  elTwo.remove();
+  }) 
+}
+//Reset score
 function makeSelection(selection) {
   const computerSelection = randomSelection();
   changeColor(computerSelection);
   const yourWinner = isWinner(selection, computerSelection);
   const computerWinner = isWinner(computerSelection, selection);
   addSelectionResult(computerWinner);
-  addSelectionResult(yourWinner);
+  addSelectionResult(yourWinner); 
   if (yourWinner) incrementScore(playerScore);
-//add player's score
   if (computerWinner) incrementScore(computerScore);
+//add player's score
   showRound(playerScore, computerScore);
 //add computer's score
 }
